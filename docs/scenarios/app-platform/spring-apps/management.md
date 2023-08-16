@@ -41,6 +41,10 @@ You can provision your own monitoring resources. This approach gives the applica
 
     For Azure Spring Apps, view the charts in each application overview page and common metrics page.
 
+- Use Log Analytics to collect and view resource and application logs.
+
+  [![Diagram that shows Azure App Service logs page.](./media/spring-apps-monitoring-logs.png)](./media/spring-apps-monitoring-logs.png#lightbox)
+
 - Use the diagnostics settings page within Azure Spring Apps to configure the desired combination of diagnostic settings for your apps.
 
     > [!NOTE]
@@ -48,22 +52,39 @@ You can provision your own monitoring resources. This approach gives the applica
 
 - Use Application Insights as a consistent Application Performance Monitoring (APM) tool across all application components to collect application logs, metrics, and traces. It can collect data from all the dependencies and traces and has the capability to visualize end-to-end transactions.
 
-    Azure Spring Apps allows you to collect Spring Cloud Resilience4J metrics into Application Insights. Enable the Java In-Process agent and configure dimension collection to enable this feature.
+    Application Insights' Java in-process agent can be configured to collect additional metrics such as Spring Cloud Resilience4J metrics with micrometer. These metrics can be monitored and visualized from Application Insights.
 
-    Azure Spring Apps integrates Spring Cloud Sleuth and Zipkin with Application Insights.
+  Application Map -
+  [![Diagram that shows Azure App Service application map page.](./media/spring-apps-monitoring-application-map.png)](./media/spring-apps-monitoring-application-map.png#lightbox)
 
-- Choose service discovery mechanisms that allow you to quickly discover and register app instances. The options vary based on the Azure Spring Apps tier.
+  Metrics -
+  [![Diagram that shows Azure App Service metrics page.](./media/spring-apps-monitoring-metrics.png)](./media/spring-apps-monitoring-metrics.png#lightbox)
 
-  - Basic/Standard: [Kubernetes service discovery or Managed Spring Cloud Service Registry (using Eureka)](/azure/spring-apps/how-to-service-registration?pivots=programming-language-java)
-  - Enterprise: [Tanzu Service Registry](/azure/spring-apps/how-to-enterprise-service-registry)
+  Live Metrics - 
+  [![Diagram that shows Azure App Service live metrics page.](./media/spring-apps-monitoring-live-metrics.png)](./media/spring-apps-monitoring-live-metrics.png#lightbox)
+
+  Failures -
+  [![Diagram that shows Azure App Service failures page.](./media/spring-apps-monitoring-failures.png)](./media/spring-apps-monitoring-failures.png#lightbox)
+
+- Implement service discovery using Tanzu Service Registry that allow you to quickly discover and register app instances.
 
 - Use readiness and liveness probes together so that unhealthy app instances are removed from service discovery features.
+
+  [![Diagram that shows Azure App Service health probes page.](./media/spring-apps-monitoring-health-probes.png)](./media/spring-apps-monitoring-health-probes.png#lightbox)
 
 - If your application has a longer startup time, adjust the total timeout `initialDelaySeconds + periodSeconds * failureThreshold` to a value longer than the start time of your application. This adjustment helps avoid the probe failure and forces the application to restart.
 
 - Configure your health probes to take action based on the application-specific command, a TCP Socket connection, or an HTTP request.
 
 - For Spring Boot apps, take advantage of the Spring Boot Actuator Health Indicator to configure your health probes.
+
+- Take advantage of enterprise-grade components such as Spring Cloud Gateway and API Portal to simplify and accelerate API delivery.
+
+  Spring Cloud Gateway -
+  [![Diagram that shows Azure App Service spring cloud gateway page.](./media/spring-apps-monitoring-cloud-gateway.png)](./media/spring-apps-monitoring-cloud-gateway.png#lightbox)
+
+  API Portal -
+  [![Diagram that shows Azure App Service API portal page.](./media/spring-apps-monitoring-api-portal.png)](./media/spring-apps-monitoring-api-portal.png#lightbox)
 
 ## Next steps
 
